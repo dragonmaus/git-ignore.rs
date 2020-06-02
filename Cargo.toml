@@ -1,0 +1,17 @@
+[package]
+name = "git-ignore"
+version = "1.0.0"
+authors = ["David Wildasin <dragonmaus@posteo.net>"]
+edition = "2018"
+description = "Easily add entries to Git's ignore files"
+repository = "https://git.dragonma.us/dragonmaus/boring.rs"
+license = "BSD-3-Clause-Clear"
+categories = ["command-line-utilities"]
+publish = false
+
+[dependencies]
+atomicwrites = "0.2"
+dirs = "2.0"
+getopt = "1.0"
+git2 = "0.13"
+program = { git = "https://git.dragonma.us/dragonmaus/program.rs", version = "1.0" }

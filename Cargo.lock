@@ -128,9 +128,9 @@ checksum = "a06f77d526c1a601b7c4cdd98f54b5eaabffc14d5f2f0296febdc7f357c6d3ba"
 
 [[package]]
 name = "getopt"
-version = "1.0.2"
+version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "09967f2490f1eadf673ed7beb29a98948e04dee3f117c104121507d8336ec302"
+checksum = "0896f7540f160b6f271ce25cc7076802de8bea22ec3b58a75f6670de81f98d4e"
 
 [[package]]
 name = "getrandom"

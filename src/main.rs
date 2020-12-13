@@ -19,7 +19,7 @@ fn usage_line() -> String {
     )
 }
 
-fn print_usage() -> program::Result {
+fn print_usage() {
     println!("{}", usage_line());
     println!("  -f FILE  add patterns to FILE");
     println!("  -g       add patterns to global ignore file (core.excludesFile)");
@@ -30,7 +30,6 @@ fn print_usage() -> program::Result {
     println!();
     println!("By default, patterns are added to the file '.gitignore' in the current directory.");
     println!("The specified file is created if it does not exist.");
-    Ok(0)
 }
 
 fn program() -> program::Result {
@@ -44,9 +43,12 @@ fn program() -> program::Result {
             Some(opt) => match opt {
                 Opt('f', Some(arg)) => mode = Mode::File(arg),
                 Opt('g', None) => mode = Mode::Global,
-                Opt('h', None) => return print_usage(),
                 Opt('i', None) => mode = Mode::Internal,
                 Opt('r', None) => mode = Mode::Root,
+                Opt('h', None) => {
+                    print_usage();
+                    return Ok(0);
+                }
                 _ => unreachable!(),
             },
         }
@@ -81,7 +83,7 @@ fn update(mode: Mode, args: Vec<String>) -> program::Result {
     })?;
 
     eprint!("Updating {}... ", file.to_string_lossy());
-    let new = merge(&old, &args)?;
+    let new = merge(&old, &args);
 
     if new == old {
         eprintln!("Nothing to do!");
@@ -142,7 +144,7 @@ fn root_ignore_file() -> Result<PathBuf, Box<dyn Error>> {
     }
 }
 
-fn merge(text: &str, args: &[String]) -> Result<String, Box<dyn Error>> {
+fn merge(text: &str, args: &[String]) -> String {
     let mut lines: HashSet<String> = text.lines().map(String::from).collect();
 
     for arg in args {
@@ -179,5 +181,5 @@ fn merge(text: &str, args: &[String]) -> Result<String, Box<dyn Error>> {
         text.push('\n');
     }
 
-    Ok(text)
+    text
 }

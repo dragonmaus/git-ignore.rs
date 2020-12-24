@@ -1,6 +1,6 @@
 [package]
 name = "git-ignore"
-version = "1.0.1"
+version = "1.0.2"
 authors = ["David Wildasin <dragonmaus@posteo.net>"]
 edition = "2018"
 description = "Easily add entries to Git's ignore files"
@@ -15,3 +15,6 @@ dirs = "3"
 getopt = "1"
 git2 = "0.13"
 program = { git = "https://git.dragonma.us/dragonmaus/program.rs", version = "1" }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+openssl = { version = "0.10", features = ["vendored"] }

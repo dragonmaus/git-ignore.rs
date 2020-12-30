@@ -114,7 +114,7 @@ fn global_ignore_file() -> Result<PathBuf, Box<dyn Error>> {
                 fs::create_dir_all(&dir)?;
                 Ok(dir.join("ignore"))
             } else {
-                Err(Box::new(error))
+                Err(error.into())
             }
         }
         Ok(path) => Ok(path),
@@ -139,7 +139,7 @@ fn internal_ignore_file() -> Result<PathBuf, Box<dyn Error>> {
 
 fn root_ignore_file() -> Result<PathBuf, Box<dyn Error>> {
     match Repository::open_from_env()?.workdir() {
-        None => Err(Box::new(GitError::from_str("Repository is bare"))),
+        None => Err(GitError::from_str("Repository is bare").into()),
         Some(path) => Ok(path.join(".gitignore")),
     }
 }

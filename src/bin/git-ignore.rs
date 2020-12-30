@@ -12,15 +12,15 @@ use std::{
 
 program::main!("git-ignore");
 
-fn usage_line() -> String {
+fn usage_line(program_name: &str) -> String {
     format!(
         "Usage: {} [-h] [-gir] [-f FILE] pattern [pattern ...]",
-        program::name("git-ignore")
+        program_name
     )
 }
 
-fn print_usage() {
-    println!("{}", usage_line());
+fn print_usage(program_name: &str) {
+    println!("{}", usage_line(program_name));
     println!("  -f FILE  add patterns to FILE");
     println!("  -g       add patterns to global ignore file (core.excludesFile)");
     println!("  -i       add patterns to internal repository ignore file (_/.git/info/exclude)");
@@ -32,7 +32,7 @@ fn print_usage() {
     println!("The specified file is created if it does not exist.");
 }
 
-fn program() -> program::Result {
+fn program(name: &str) -> program::Result {
     let mut args = program::args();
     let mut opts = getopt::Parser::new(&args, "f:ghir");
     let mut mode = Mode::File(".gitignore".to_string());
@@ -46,7 +46,7 @@ fn program() -> program::Result {
                 Opt('i', None) => mode = Mode::Internal,
                 Opt('r', None) => mode = Mode::Root,
                 Opt('h', None) => {
-                    print_usage();
+                    print_usage(name);
                     return Ok(0);
                 }
                 _ => unreachable!(),
@@ -56,7 +56,7 @@ fn program() -> program::Result {
 
     let args = args.split_off(opts.index());
     if args.is_empty() {
-        eprintln!("{}", usage_line());
+        eprintln!("{}", usage_line(name));
         return Ok(1);
     }
 

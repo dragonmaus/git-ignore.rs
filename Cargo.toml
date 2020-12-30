@@ -14,7 +14,7 @@ atomicwrites = "0.2"
 dirs = "3"
 getopt = "1"
 git2 = "0.13"
-program = { git = "https://git.dragonma.us/dragonmaus/program.rs", version = "1" }
+program = { git = "https://git.dragonma.us/dragonmaus/program.rs", version = "2" }
 
 [target.'cfg(target_os = "macos")'.dependencies]
 openssl = { version = "0.10", features = ["vendored"] }

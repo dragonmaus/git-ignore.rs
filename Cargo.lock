@@ -143,9 +143,9 @@ checksum = "a06f77d526c1a601b7c4cdd98f54b5eaabffc14d5f2f0296febdc7f357c6d3ba"
 
 [[package]]
 name = "getopt"
-version = "1.0.3"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0896f7540f160b6f271ce25cc7076802de8bea22ec3b58a75f6670de81f98d4e"
+checksum = "285cb971bc8c03a00e74dd45a6b23bda02425336a6f23231fec898f796ac49a2"
 
 [[package]]
 name = "getrandom"
@@ -172,9 +172,9 @@ dependencies = [
 
 [[package]]
 name = "git2"
-version = "0.13.14"
+version = "0.13.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "186dd99cc77576e58344ad614fa9bb27bad9d048f85de3ca850c1f4e8b048260"
+checksum = "44f267c9da8a4de3c615b59e23606c75f164f84896e97f4dd6c15a4294de4359"
 dependencies = [
  "bitflags",
  "libc",
@@ -219,9 +219,9 @@ checksum = "1482821306169ec4d07f6aca392a4681f66c75c9918aa49641a2595db64053cb"
 
 [[package]]
 name = "libgit2-sys"
-version = "0.12.16+1.1.0"
+version = "0.12.17+1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9f91b2f931ee975a98155195be8cd82d02e8e029d7d793d2bac1b8181ac97020"
+checksum = "f4ebdf65ca745126df8824688637aa0535a88900b83362d8ca63893bcf4e8841"
 dependencies = [
  "cc",
  "libc",
@@ -287,9 +287,9 @@ dependencies = [
 
 [[package]]
 name = "openssl"
-version = "0.10.31"
+version = "0.10.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8d008f51b1acffa0d3450a68606e6a51c123012edaacb0f4e1426bd978869187"
+checksum = "038d43985d1ddca7a9900630d8cd031b56e4794eecc2e9ea39dd17aa04399a70"
 dependencies = [
  "bitflags",
  "cfg-if 1.0.0",
@@ -316,9 +316,9 @@ dependencies = [
 
 [[package]]
 name = "openssl-sys"
-version = "0.9.59"
+version = "0.9.60"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "de52d8eabd217311538a39bba130d7dea1f1e118010fee7a033d966845e7d5fe"
+checksum = "921fc71883267538946025deffb622905ecad223c28efbfdef9bb59a0175f3e6"
 dependencies = [
  "autocfg",
  "cc",
@@ -342,8 +342,8 @@ checksum = "3831453b3449ceb48b6d9c7ad7c96d5ea673e9b470a1dc578c2ce6521230884c"
 
 [[package]]
 name = "program"
-version = "1.1.0"
-source = "git+https://git.dragonma.us/dragonmaus/program.rs#0b209ce9062e38d1b50191259394cab83619cd3b"
+version = "2.0.0"
+source = "git+https://git.dragonma.us/dragonmaus/program.rs#5f4367cf8dba5e918d337af22d8d1d9fdb55872c"
 
 [[package]]
 name = "rand"

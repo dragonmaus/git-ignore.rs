@@ -1,0 +1,20 @@
+[package]
+name = "git-ignore"
+version = "1.0.0"
+authors = ["David Wildasin <dragonmaus@posteo.net>"]
+edition = "2018"
+description = "Easily add entries to the various git ignore files"
+repository = "https://git.dragonma.us/rust/boring"
+license = "BSD-3-Clause-Clear"
+categories = ["command-line-utilities"]
+publish = false
+
+[dependencies]
+atomicwrites = "0.3"
+dirs = "4"
+getopt = "1"
+git2 = "0.13"
+program = { git = "git://git.dragonma.us/rust/program" }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+openssl = { version = "0.10", features = ["vendored"] }

@@ -14,7 +14,10 @@ atomicwrites = "0.3"
 dirs = "4"
 getopt = "1"
 git2 = "0.13"
-program = { git = "git://git.dragonma.us/rust/program" }
 
-[target.'cfg(target_os = "macos")'.dependencies]
-openssl = { version = "0.10", features = ["vendored"] }
+[dependencies.program]
+git = "git://git.dragonma.us/rust/program"
+
+[target.'cfg(target_os = "macos")'.dependencies.openssl]
+version = "0.10"
+features = ["vendored"]

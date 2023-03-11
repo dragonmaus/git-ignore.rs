@@ -1,6 +1,6 @@
 [package]
 name = "git-ignore"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["David Wildasin <dragonmaus@posteo.net>"]
 edition = "2018"
 description = "Easily add entries to the various git ignore files"
@@ -13,7 +13,7 @@ publish = false
 atomicwrites = "0.3"
 dirs = "4"
 getopt = "1"
-git2 = "0.13"
+git2 = "0.16.1"
 
 [dependencies.program]
 git = "git://git.dragonma.us/rust/program"

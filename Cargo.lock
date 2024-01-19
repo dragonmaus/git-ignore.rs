@@ -132,7 +132,7 @@ dependencies = [
 
 [[package]]
 name = "git-ignore"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "atomicwrites",
  "dirs",

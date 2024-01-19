@@ -1,8 +1,8 @@
 [package]
 name = "git-ignore"
-version = "1.0.1"
+version = "1.0.2"
 authors = ["David Wildasin <dragonmaus@posteo.net>"]
-edition = "2018"
+edition = "2021"
 description = "Easily add entries to the various git ignore files"
 repository = "https://git.dragonma.us/rust/boring"
 license = "BSD-3-Clause-Clear"

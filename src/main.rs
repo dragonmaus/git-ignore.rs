@@ -1,6 +1,6 @@
 use atomicwrites::{AllowOverwrite, AtomicFile};
 use getopt::Opt;
-use git2::{Config, Error as GitError, ErrorClass, ErrorCode, Repository};
+use git2 as git;
 use std::{
     collections::HashSet,
     env,
@@ -48,7 +48,7 @@ fn program(name: &str) -> program::Result {
                 Opt('h', None) => {
                     print_usage(name);
                     return Ok(0);
-                }
+                },
                 _ => unreachable!(),
             },
         }
@@ -105,23 +105,26 @@ fn get_file(mode: Mode) -> Result<PathBuf, Box<dyn Error>> {
 }
 
 fn global_ignore_file() -> Result<PathBuf, Box<dyn Error>> {
-    match Config::open_default()?.get_path("core.excludesFile") {
+    match git::Config::open_default()?.get_path("core.excludesFile") {
         Err(error) => {
-            if error.class() == ErrorClass::Config && error.code() == ErrorCode::NotFound {
+            if error.class() == git::ErrorClass::Config && error.code() == git::ErrorCode::NotFound
+            {
                 let dir = dirs::config_dir()
-                    .ok_or_else(|| Box::new(GitError::from_str("Could not find XDG_CONFIG_HOME")))?
+                    .ok_or_else(|| {
+                        Box::new(git::Error::from_str("Could not find XDG_CONFIG_HOME"))
+                    })?
                     .join("git");
                 fs::create_dir_all(&dir)?;
                 Ok(dir.join("ignore"))
             } else {
                 Err(error.into())
             }
-        }
+        },
         Ok(path) => Ok(path),
     }
 }
 
-// `Repository::open_from_env()?.path()` returns a path that uses '/' on Windows; fix that
+// `git::Repository::open_from_env()?.path()` returns a path that uses '/' on Windows; fix that
 fn fix_path<P: AsRef<Path>>(path: P) -> PathBuf {
     let mut new = PathBuf::new();
     for e in path.as_ref().iter() {
@@ -132,14 +135,14 @@ fn fix_path<P: AsRef<Path>>(path: P) -> PathBuf {
 }
 
 fn internal_ignore_file() -> Result<PathBuf, Box<dyn Error>> {
-    let dir = fix_path(Repository::open_from_env()?.path()).join("info");
+    let dir = fix_path(git::Repository::open_from_env()?.path()).join("info");
     fs::create_dir_all(&dir)?;
     Ok(dir.join("exclude"))
 }
 
 fn root_ignore_file() -> Result<PathBuf, Box<dyn Error>> {
-    match Repository::open_from_env()?.workdir() {
-        None => Err(GitError::from_str("Repository is bare").into()),
+    match git::Repository::open_from_env()?.workdir() {
+        None => Err(git::Error::from_str("Repository is bare").into()),
         Some(path) => Ok(path.join(".gitignore")),
     }
 }

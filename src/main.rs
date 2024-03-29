@@ -1,3 +1,7 @@
+extern crate atomicwrites;
+extern crate getopt;
+extern crate git2;
+
 use atomicwrites::{AllowOverwrite, AtomicFile};
 use getopt::Opt;
 use git2 as git;
